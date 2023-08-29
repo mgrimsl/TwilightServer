@@ -1,7 +1,7 @@
 extends Node3D
 
 var peer = ENetMultiplayerPeer.new()
-var isServer = false
+var isServer = true
 @export var player_scene : PackedScene
 @onready var cam = $Camera3D
 # Called when the node enters the scene tree for the first time.
