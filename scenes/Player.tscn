@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdjkh3nasn8vn"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_88php"]
+[ext_resource type="PackedScene" uid="uid://cmrhda4lpqeol" path="res://scenes/stylized_character.tscn" id="2_yyevk"]
+[ext_resource type="PackedScene" uid="uid://h60aqkr44qp" path="res://scenes/floatgui.tscn" id="4_cvas3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p1fg1"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_88php")
+
+[node name="StylizedCharacter" parent="." instance=ExtResource("2_yyevk")]
+
+[node name="AACD" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_p1fg1")
+
+[node name="A1CD" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Channel" type="Timer" parent="."]
+
+[node name="FloatGUI" parent="." instance=ExtResource("4_cvas3")]
+anchors_preset = 0
+anchor_right = 0.0
+offset_right = 521.0
+grow_horizontal = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 564.0
+offset_bottom = 88.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="A1CD" to="." method="_on_a_1cd_timeout"]
+[connection signal="timeout" from="Channel" to="." method="_on_channel_timeout"]
