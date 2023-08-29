@@ -1,13 +1,13 @@
 [gd_scene load_steps=18 format=3 uid="uid://05hl1cqa7sm8"]
 
-[ext_resource type="Script" path="res://CameraNode.gd" id="1_5afgx"]
-[ext_resource type="Texture2D" uid="uid://cjmssfcrvfycj" path="res://wispy-grass-meadow_albedo.png" id="1_hhnin"]
+[ext_resource type="Script" path="res://src/cameras/CameraNode.gd" id="1_5afgx"]
+[ext_resource type="Texture2D" uid="uid://cjmssfcrvfycj" path="res://assets/mesh/wispy-grass-meadow_albedo.png" id="1_hhnin"]
 [ext_resource type="Script" path="res://MainScene.gd" id="1_wpbrr"]
-[ext_resource type="PackedScene" uid="uid://b46k0ob7owk51" path="res://scenes/PlayerRpc.tscn" id="2_dlttr"]
-[ext_resource type="Script" path="res://Enemy.gd" id="5_7odlj"]
-[ext_resource type="Script" path="res://Ground.gd" id="5_15tt3"]
-[ext_resource type="Script" path="res://scenes/PlayersMan.gd" id="8_e3npx"]
-[ext_resource type="PackedScene" uid="uid://bme4lusqxwnqn" path="res://scenes/gui.tscn" id="8_klb7r"]
+[ext_resource type="PackedScene" uid="uid://b46k0ob7owk51" path="res://src/champions/PlayerRpc.tscn" id="2_vj3hd"]
+[ext_resource type="Script" path="res://src/depricated/Enemy.gd" id="5_7odlj"]
+[ext_resource type="Script" path="res://src/world/Ground.gd" id="5_15tt3"]
+[ext_resource type="PackedScene" uid="uid://bme4lusqxwnqn" path="res://src/ui/gui.tscn" id="8_klb7r"]
+[ext_resource type="Script" path="res://src/champions/PlayersMan.gd" id="8_oyfto"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kbypd"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -52,7 +52,7 @@ func _process(delta):
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_wpbrr")
-player_scene = ExtResource("2_dlttr")
+player_scene = ExtResource("2_vj3hd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -133,10 +133,10 @@ text = "Quit
 "
 
 [node name="PlayersMan" type="Node3D" parent="."]
-script = ExtResource("8_e3npx")
+script = ExtResource("8_oyfto")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="PlayersMan"]
-_spawnable_scenes = PackedStringArray("res://scenes/ability_1.tscn", "res://scenes/auto_attack.tscn", "res://scenes/PlayerRpc.tscn")
+_spawnable_scenes = PackedStringArray("res://src/champions/PlayerRpc.tscn", "res://src/champions/Rain/AutoAttack/auto_attack.tscn", "res://src/champions/Rain/Abilities/ability_1.tscn")
 spawn_path = NodePath("..")
 
 [node name="GUI" parent="PlayersMan" instance=ExtResource("8_klb7r")]

@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://bme4lusqxwnqn"]
+
+[ext_resource type="Texture2D" uid="uid://xixeul53rjpr" path="res://assets/GUI/label_HP_bg.png" id="1_d33lk"]
+[ext_resource type="Texture2D" uid="uid://tpucmmif8bp1" path="res://assets/GUI/label_HP.png" id="2_d4eif"]
+[ext_resource type="FontFile" uid="uid://dhuapfc16n5u1" path="res://assets/font/Comfortaa-Bold.ttf" id="3_2rofn"]
+[ext_resource type="Texture2D" uid="uid://c22kufdpjx6u8" path="res://assets/GUI/lifebar_bg_Green.png" id="4_2xq8l"]
+[ext_resource type="Texture2D" uid="uid://c700mc2kx2kox" path="res://assets/GUI/lifebar_fill_Green.png" id="5_ambs2"]
+[ext_resource type="Script" path="res://src/ui/Gauge.gd" id="6_fo3q3"]
+[ext_resource type="Texture2D" uid="uid://dctj3oicnchxh" path="res://assets/GUI/right-arrow.png" id="7_rdgu4"]
+
+[node name="GUI" type="MarginContainer"]
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Bars" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Bar" type="HBoxContainer" parent="HBoxContainer/Bars"]
+layout_mode = 2
+
+[node name="Count" type="MarginContainer" parent="HBoxContainer/Bars/Bar"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="BackGround" type="NinePatchRect" parent="HBoxContainer/Bars/Bar/Count"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+texture = ExtResource("1_d33lk")
+
+[node name="Title" type="TextureRect" parent="HBoxContainer/Bars/Bar/Count/BackGround"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 0
+offset_left = -21.0
+offset_right = 79.0
+offset_bottom = 40.0
+texture = ExtResource("2_d4eif")
+stretch_mode = 3
+
+[node name="Number" type="Label" parent="HBoxContainer/Bars/Bar/Count/BackGround"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = 2.0
+offset_right = -3.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rofn")
+theme_override_font_sizes/font_size = 28
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Gauge" type="TextureProgressBar" parent="HBoxContainer/Bars/Bar/Count/BackGround"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = -6.0
+offset_right = 497.0
+offset_bottom = 47.0
+value = 30.0
+texture_under = ExtResource("4_2xq8l")
+texture_progress = ExtResource("5_ambs2")
+script = ExtResource("6_fo3q3")
+
+[node name="Counters" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Right-arrow" type="Sprite2D" parent="."]
+position = Vector2(22, 1055)
+scale = Vector2(0.0898438, 0.0878908)
+texture = ExtResource("7_rdgu4")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
