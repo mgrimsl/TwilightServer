@@ -1,11 +1,15 @@
 extends Node3D
 
-var peer = ENetMultiplayerPeer.new()
+var peer
 @export var player_scene : PackedScene
 @onready var cam = $Camera3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("ready")
+	peer = ENetMultiplayerPeer.new()
+	print("enet done")
 	peer.create_server(8080)
+	print("created")
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(add_player)
 
