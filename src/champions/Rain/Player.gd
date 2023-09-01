@@ -120,6 +120,7 @@ func _on_timer_timeout():
 	AAtimer.stop()
 
 func _on_ground_move(dest):
+	print("move")
 	if(!is_multiplayer_authority()):
 		return
 	moving = true;

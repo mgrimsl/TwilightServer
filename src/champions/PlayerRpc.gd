@@ -18,14 +18,14 @@ func _process(delta):
 
 
 func _enter_tree():
-	set_multiplayer_authority(name.to_int())
+	#set_multiplayer_authority(name.to_int())
 	#if !is_multiplayer_authority():
 	#	$"Camera3D".clear_current()
 	#else:
 	#	$"Camera3D".make_current()
 	get_parent().playerAdded(self, is_multiplayer_authority())
 
-@rpc("unreliable", "any_peer", "call_local") func updatePos(id,pos, moving, velo, dest, attacking, speed):
+@rpc("unreliable", "any_peer", "call_local") func updatePo(id,pos, moving, velo, dest, attacking, speed):
 	if !is_multiplayer_authority():
 		if name == id:
 			#print(velo)
@@ -55,9 +55,12 @@ func _enter_tree():
 		$Player._on_enemy_attacked(target)
 
 func _on_timer_timeout():
-	if is_multiplayer_authority():
-		rpc("updatePos", name, $Player.position, $Player.moving, $Player.velocity, $Player.destination, $Player.attacking, $Player.Speed)
-		
+	#if is_multiplayer_authority():
+		#rpc("updatePos", name, $Player.position, $Player.moving, $Player.velocity, $Player.destination, $Player.attacking, $Player.Speed)
+		rpc("updatePos", name, $Player.position)
 func _on_attack(target):
 	pass
 	#print(target)
+@rpc("unreliable", "any_peer", "call_local") func updatePos(id,pos):
+	if str(multiplayer.get_remote_sender_id()) == id:
+		self.position = lerp(self.position, pos, 1)
